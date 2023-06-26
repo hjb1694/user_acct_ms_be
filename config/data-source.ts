@@ -1,5 +1,5 @@
 import { DataSource } from 'typeorm';
-import { config } from './config/index.ts';
+import { config } from './index.ts';
 
 export const AppDataSource = new DataSource({
     type: config.db[`${config.env}`].client,
