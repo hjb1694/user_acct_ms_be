@@ -1,9 +1,1 @@
-{
-    "imports": {
-        "typeorm": "npm:typeorm", 
-        "pg": "npm:pg"
-    }, 
-    "compilerOptions": {
-        "strictPropertyInitialization": false,
-    }
-}
+{}

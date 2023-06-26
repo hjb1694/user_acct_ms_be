@@ -1,8 +1,9 @@
 import { config } from './config/index.ts';
 import { Application, Router } from "https://deno.land/x/oak/mod.ts";
-import { ExpressBootstrapError } from './util/errors.ts';
+import { AppBootstrapError } from './util/errors.ts';
 import { logger } from './config/logger.ts';
 import { apiKeyCheck } from './middleware/global/api_key_check.ts';
+import { AppDataSource } from './config/data-source.ts';
 
 //Routers
 import {
@@ -18,7 +19,7 @@ app.use(authRouter.allowedMethods());
 
 
 const handleConnectionError = (err: any) => {
-    const bootstrapError = new ExpressBootstrapError(err);
+    const bootstrapError = new AppBootstrapError(err);
     logger.error(bootstrapError.details);
     Deno.exit(1);
 }

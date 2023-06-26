@@ -14,7 +14,7 @@ interface BootstrapError {
 }
 
 
-export class ExpressBootstrapError extends Error implements BootstrapError {
+export class AppBootstrapError extends Error implements BootstrapError {
     constructor(
       private readonly errDetails: string
     ) {
@@ -23,7 +23,7 @@ export class ExpressBootstrapError extends Error implements BootstrapError {
     }
 
     status = 500;
-    message = 'Failed to bootstrap Express.';
+    message = 'Failed to bootstrap the app.';
     details = {
             statusCode: this.status, 
             message: this.message, 
