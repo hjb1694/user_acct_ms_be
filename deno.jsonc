@@ -1,7 +1,6 @@
 {
-    "tasks": {
-        "start": "deno run app.ts",
-        "migrate:make": "deno run -A --unstable https://deno.land/x/nessie/cli.ts make:migration", 
-        "migrate": "deno run -A --unstable https://deno.land/x/nessie/cli.ts migrate"
+    "imports": {
+        "typeorm": "npm:typeorm", 
+        "pg": "npm:pg"
     }
 }
