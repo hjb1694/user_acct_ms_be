@@ -2,6 +2,7 @@ import { config } from './config/index.ts';
 import { Application, Router } from "https://deno.land/x/oak/mod.ts";
 import { ExpressBootstrapError } from './util/errors.ts';
 import { logger } from './config/logger.ts';
+import { apiKeyCheck } from './middleware/global/api_key_check.ts';
 
 //Routers
 import {
@@ -10,7 +11,10 @@ import {
 
 const app = new Application();
 
+app.use(apiKeyCheck);
+
 app.use(authRouter.routes());
+app.use(authRouter.allowedMethods());
 
 
 const handleConnectionError = (err: any) => {
