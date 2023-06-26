@@ -6,6 +6,7 @@ enum AppEnv {
 }
 
 interface DBCredentials {
+    client: any,
     db_name: string;
     host: string;
     user: string;
@@ -32,6 +33,7 @@ export const config: Config = {
     port: +env['PORT'] || 3000, 
     db: {
         development: {
+            client: 'postgres',
             db_name: env['DEV_DB_NAME'] || 'auth_dev',
             host: env['DEV_DB_HOST'] || '127.0.0.1',
             user: env['DEV_DB_USER'] || 'postgres',
@@ -39,6 +41,7 @@ export const config: Config = {
             port: +env['DEV_DB_PORT'] || 5432
         }, 
         production: {
+            client: 'postgres',
             db_name: env['PROD_DB_NAME'] || 'auth_prod',
             host: env['PROD_DB_HOST'], 
             user: env['PROD_DB_USER'],
