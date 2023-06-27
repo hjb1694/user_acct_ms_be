@@ -8,7 +8,13 @@ export default async function(ctx: Context, next: Next){
     try{
 
         let body = await ctx.request.body({type: 'json'});
-        body = await body.value;
+        let {
+            email, 
+            dob, 
+            password, 
+            account_name, 
+            personal_username
+        } = await body.value;
 
         if(!body){
             throw new ResponseError(
@@ -17,6 +23,55 @@ export default async function(ctx: Context, next: Next){
                 ERR_SHORT_MSG.MISSING_FIELDS,
                 {
                     msg: 'Missing fields.'
+                }
+            );
+        }
+
+        let errors = [];
+
+        if(!email){
+            errors.push({
+                field: 'email', 
+                msg: 'Missing email field.'
+            });
+        }
+
+        if(!dob){
+            errors.push({
+                field: 'dob', 
+                msg: 'Missing dob field.'
+            });
+        }
+
+        if(!password){
+            errors.push({
+                field: 'password', 
+                msg: 'Missing password field.'
+            });
+        }
+
+        if(!account_name){
+            errors.push({
+                field: 'account_name', 
+                msg: 'Missing account_name field.'
+            });
+        }
+
+        if(!personal_username){
+            errors.push({
+                field: 'personal_username', 
+                msg: 'Missing personal_username field.'
+            });
+        }
+
+        if(errors.length){
+            throw new ResponseError(
+                ctx, 
+                422, 
+                ERR_SHORT_MSG.MISSING_FIELDS,
+                {
+                    msg: 'Missing specific fields.', 
+                    fields: errors
                 }
             );
         }
