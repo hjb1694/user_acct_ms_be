@@ -1,1 +1,6 @@
-{}
+{
+    "tasks": {
+        "db-migrate": "deno run ./db/util/migration_run.ts migrate",
+        "db-rollback": "deno run ./db/util/migration_run.ts rollback"
+    }
+}
